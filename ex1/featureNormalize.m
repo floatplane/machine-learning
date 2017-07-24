@@ -26,7 +26,9 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
-
+mu = mean(X); % mean() returns row vector of the mean of each column
+sigma = std(X); % std() returns row vector of the stddev of each column
+X_norm = (X .- mu) ./ sigma;
 
 
 
