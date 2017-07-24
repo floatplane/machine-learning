@@ -25,6 +25,14 @@ J = 1 / m * (
       + 0.5 * lambda * sum(theta(2:end) .^ 2)
     );
 
+# Theta: 1x28 vector
+# X: 118 x 28 matrix
+# y: 118 x 1 vector
+
+# Note that summation in the first term is implicit due to matrix multiplication
+grad = 1 / m * (
+         X' * (sigmoid(X * theta) .- y)
+       + [0; lambda * theta(2:end)]);
 
 % =============================================================
 
