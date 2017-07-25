@@ -30,11 +30,12 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-
-
-
+% Compute all prediction values: X * all_theta' gives a matrix with num_labels
+% columns and X's rows Each row contains the prediction for one input against
+% num_labels columns. The index of the maximum value is our label. max returns
+% the maximum value found in each row, and the index of the maximum value found
+% as the second argument. The latter is what we want.
+[foo, p] = max(X * all_theta', [], 2);
 
 % =========================================================================
 
