@@ -36,6 +36,21 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+J = 1 / m * (
+      sum(
+          -y .* log(sigmoid(X * theta)) .- (1 .- y) .* log(1 .- sigmoid(X * theta))
+        )
+      + 0.5 * lambda * sum(theta(2:end) .^ 2)
+    );
+
+# Theta: 1x28 column vector
+# X: 118 x 28 feature matrix
+# y: 118 x 1 row vector
+
+# Note that summation in the first term is implicit due to matrix multiplication
+grad = 1 / m * (
+         X' * (sigmoid(X * theta) .- y)
+       + [0; lambda * theta(2:end)]);
 
 
 
