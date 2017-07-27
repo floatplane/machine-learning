@@ -40,9 +40,14 @@ Theta2_grad = zeros(size(Theta2));
 %         computed in ex4.m
 
 a1 = [ones(m, 1) X];
-a2 = sigmoid(a1 * Theta1');
+
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+
 a2 = [ones(m, 1) a2];
-h = sigmoid(a2 * Theta2');
+
+z3 = a2 * Theta2';
+h = sigmoid(z3);
 
 % Convert y from an array of indices to an array of vectors with 1's or 0's at each index.
 % 'sparse' trick from https://stackoverflow.com/questions/25107361/convert-digit-to-vector-octave-matlab
@@ -65,6 +70,13 @@ J = 1.0 / m * sum(sum(-y .* log(h) - (1 .- y) .* log(1 .- h)));
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+
+delta3 = h - y;
+delta2 = (delta3 * Theta2(:, 2:end)) .* sigmoidGradient(z2);
+
+Theta1_grad = delta2' * a1 / m;
+Theta2_grad = delta3' * a2 / m;
+
 %
 % Part 3: Implement regularization with the cost function and gradients.
 %
