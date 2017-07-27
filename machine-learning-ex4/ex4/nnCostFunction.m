@@ -38,6 +38,18 @@ Theta2_grad = zeros(size(Theta2));
 %         variable J. After implementing Part 1, you can verify that your
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
+
+a1 = [ones(m, 1) X];
+a2 = sigmoid(a1 * Theta1');
+a2 = [ones(m, 1) a2];
+h = sigmoid(a2 * Theta2');
+
+% Convert y from an array of indices to an array of vectors with 1's or 0's at each index.
+% 'sparse' trick from https://stackoverflow.com/questions/25107361/convert-digit-to-vector-octave-matlab
+y = full(sparse(1:m, y, 1, m, size(Theta2, 1)));
+
+J = 1.0 / m * sum(sum(-y .* log(h) - (1 .- y) .* log(1 .- h)));
+
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
