@@ -74,6 +74,7 @@ J = 1.0 / m * sum(sum(-y .* log(h) - (1 .- y) .* log(1 .- h)));
 %               and Theta2_grad from Part 2.
 %
 
+J += 0.5 * lambda / m * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
 
 
 
