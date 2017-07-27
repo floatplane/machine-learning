@@ -88,6 +88,10 @@ Theta2_grad = delta3' * a2 / m;
 
 J += 0.5 * lambda / m * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
 
+% When regularizing gradients, the contribution from the bias terms is ignored. Hence
+% the replacement of the first column of Theta1 with zeros
+Theta1_grad = Theta1_grad + lambda / m * [zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+Theta2_grad = Theta2_grad + lambda / m * [zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
 
 
