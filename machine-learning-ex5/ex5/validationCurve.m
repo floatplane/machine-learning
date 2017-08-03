@@ -24,6 +24,19 @@ error_val = zeros(length(lambda_vec), 1);
 %               error_train(i), and error_val(i) should give 
 %               you the errors obtained after training with 
 %               lambda = lambda_vec(i)
+for i = 1:length(lambda_vec)
+  lambda = lambda_vec(i)
+  # Calculate theta, given a training set and current lambda
+  theta = trainLinearReg(X, y, lambda);
+  # Calculate the training error over the training set we used. Note that
+  # lambda = 0 here.
+  J_train = linearRegCostFunction(X, y, theta, 0);
+  # Calculate the crass-verification error. Note that
+  # lambda = 0 here as well.
+  J_val = linearRegCostFunction(Xval, yval, theta, 0);
+  error_train(i) = J_train;
+  error_val(i) = J_val;
+end
 %
 % Note: You can loop over lambda_vec with the following:
 %

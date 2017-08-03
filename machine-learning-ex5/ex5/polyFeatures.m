@@ -7,7 +7,7 @@ function [X_poly] = polyFeatures(X, p)
 
 
 % You need to return the following variables correctly.
-m = numel(X)
+m = numel(X);
 X_poly = zeros(m, p);
 
 % ====================== YOUR CODE HERE ======================
