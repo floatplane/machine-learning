@@ -97,13 +97,12 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-
-
-
-
-
-
-
+    % strcmp can operate on a whole cell array, returning a vector with 1 or 0 to
+    % indicate matches. Then we use find() to locate the first match.
+    match = find(strcmp(vocabList, str), 1);
+    if length(match) > 0
+      word_indices = [word_indices; match(1)];
+    end
 
 
     % =============================================================
