@@ -26,8 +26,11 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
+for c = 1:K
+  % X(idx == c, :) performs logical indexing, to collect all rows of X where the
+  % corresponding value in idx == c. Then we just take the mean of all the rows.
+  centroids(c, :) = mean(X(idx == c, :), 1);
+end
 
 
 
